@@ -1,16 +1,16 @@
 import PageHeading from "./PageHeading";
 import ProductListings from "./ProductListings";
-import { useState, useEffect } from "react";
+
 import apiClient from "../api/apiClient";
 import { useLoaderData, useLocation } from "react-router-dom";
 
 export default function Home() {
   const products = useLoaderData();
-  const location = useLocation();
-  const username = location.state;
-  const path = location.pathname;
-  console.log(username);
-  console.log(path);
+  // const location = useLocation();
+  // const username = location.state;
+  // const path = location.pathname;
+  // console.log(username);
+  // console.log(path);
   return (
     <div className="home-container bg-normalbg dark:bg-black min-h-screen">
       <PageHeading title="Explore Eazy Stickers">

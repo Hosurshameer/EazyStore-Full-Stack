@@ -15,7 +15,7 @@ export default function Cart() {
         <PageTltle title="Your Cart" />
         <div className="text-center text-gray-600 dark:text-lighter flex flex-col items-center">
           <p className="max-w-[576px] px-2 mx-auto text-base mb-4">
-            Oops... Your cart is empty. Continue shopping
+            Oops... Your cart is empty. Continue Shopping
           </p>
           <img
             src={emptyCartImage}

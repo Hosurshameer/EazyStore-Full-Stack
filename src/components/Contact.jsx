@@ -15,6 +15,7 @@ export default function Contact() {
   const isSubmitting = navigation.state === "submitting";
   const formRef = useRef();
   const submit = useSubmit();
+
   useEffect(() => {
     if (actionData?.success) {
       formRef.current.reset();
@@ -150,7 +151,7 @@ export async function contactAction({ request, params }) {
   };
   try {
     await apiClient.post("/contacts", contactData);
-
+    //  return redirect("/home");
     return { success: true };
   } catch (error) {
     throw new Response(
