@@ -155,7 +155,9 @@ export async function contactAction({ request, params }) {
     return { success: true };
   } catch (error) {
     throw new Response(
-      error.message || "Failed to submit your message .Pleasse try again",
+      error.response?.data?.errorMessage ||
+        error.message ||
+        "Failed to submit your message .Pleasse try again",
       {
         status: error.status || 500,
       }
