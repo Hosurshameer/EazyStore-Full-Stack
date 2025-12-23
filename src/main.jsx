@@ -18,6 +18,7 @@ import { productsLoader } from "./components/Home.jsx";
 import { contactAction } from "./components/Contact.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
 import ProductDetail from "./components/ProductDetail.jsx";
+import { CartContext } from "./store/cart-context.jsx";
 import "react-toastify/dist/ReactToastify.css";
 
 const routeDefinations = createRoutesFromElements(
@@ -34,42 +35,19 @@ const routeDefinations = createRoutesFromElements(
 
 const appRouter = createBrowserRouter(routeDefinations);
 
-// const appRouter = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement: <ErrorPage />,
-//     children: [
-//       {
-//         index: true,
-//         element: <Home />,
-//       },
-//       {
-//         path: "/home",
-//         element: <Home />,
-//       },
-//       {
-//         path: "/about",
-//         element: <About />,
-//       },
-//       {
-//         path: "/contact",
-//         element: <Contact />,
-//       },
-//       {
-//         path: "/login",
-//         element: <Login />,
-//       },
-//       {
-//         path: "/cart",
-//         element: <Cart />,
-//       },
-//     ],
-//   },
-// ]);
+const initialContext = {
+  cart: [],
+  setCart: () => {},
+  addToCart: () => {},
+  removeFromCart: () => {},
+  totalQuantity: 0,
+};
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={appRouter} />
+    <CartContext.Provider value={initialContext}>
+      <RouterProvider router={appRouter} />
+    </CartContext.Provider>
     <ToastContainer
       position="top-center"
       autoClose={3000}
