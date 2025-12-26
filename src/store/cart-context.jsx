@@ -13,7 +13,7 @@ export const useCart = () => useContext(CartContext);
 //     console.log("Added to the cart");
 //   },
 //   removeFromCart: () => {},
-//   totalQuantity: 0,
+//   totalQuantity: 0,~
 // };
 
 const ADD_TO_CART = "ADD_TO_CART";
