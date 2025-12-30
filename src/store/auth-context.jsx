@@ -1,8 +1,8 @@
 import React, { Children } from "react";
 import { createContext, useEffect, useContext, useReducer } from "react";
 
-const AuthContext = createContext();
-const useAuth = () => useContext(authContext);
+export const AuthContext = createContext();
+export const useAuth = () => useContext(AuthContext);
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";

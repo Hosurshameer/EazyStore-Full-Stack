@@ -21,7 +21,7 @@ import ProductDetail from "./components/ProductDetail.jsx";
 import { CartProvider } from "./store/cart-context.jsx";
 import { loginAction } from "./components/Login.jsx";
 import "react-toastify/dist/ReactToastify.css";
-import { authProvider } from "./store/auth-context.jsx";
+import { AuthProvider } from "./store/auth-context.jsx";
 
 const routeDefinations = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
@@ -39,9 +39,11 @@ const appRouter = createBrowserRouter(routeDefinations);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <CartProvider>
-      <RouterProvider router={appRouter} />
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <RouterProvider router={appRouter} />
+      </CartProvider>
+    </AuthProvider>
 
     <ToastContainer
       position="top-center"
