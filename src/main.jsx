@@ -22,6 +22,8 @@ import { CartProvider } from "./store/cart-context.jsx";
 import { loginAction } from "./components/Login.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./store/auth-context.jsx";
+import Checkout from "./components/checkout.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const routeDefinations = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
@@ -31,7 +33,11 @@ const routeDefinations = createRoutesFromElements(
     <Route path="/contact" element={<Contact />} action={contactAction} />
     <Route path="/login" element={<Login />} action={loginAction} />
     <Route path="/cart" element={<Cart />} />
+
     <Route path="/products/:productId" element={<ProductDetail />} />
+    <Route element={<ProtectedRoute />}>
+      <Route path="/checkout" element={<Checkout />} />
+    </Route>
   </Route>
 );
 
