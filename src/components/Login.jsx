@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../store/auth-context";
 
 export default function Login() {
+  const { loginSuccess } = useAuth();
   const actionData = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -17,6 +18,7 @@ export default function Login() {
 
   useEffect(() => {
     if (actionData?.success) {
+      loginSuccess(actionData.jwtToken, actionData.user);
       navigate("/home");
     } else if (actionData?.errors) {
       toast.error(actionData.errors.message || "Login Failed");
@@ -102,8 +104,10 @@ export async function loginAction({ request }) {
   };
   try {
     const response = await apiClient.post("/auth/login", loginData);
-    const { message, user, jwtToken } = response.data;
-    return { success: true, user, jwtToken };
+    const { message, jwtToken, user } = response.data;
+    console.log("Login response:", response.data);
+    console.log("User:", user);
+    return { success: true, message, jwtToken, user };
   } catch (error) {
     if (error.response?.status === 401) {
       return {

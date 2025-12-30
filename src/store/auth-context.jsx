@@ -1,22 +1,24 @@
-import React, { Children } from "react";
 import { createContext, useEffect, useContext, useReducer } from "react";
 
-export const AuthContext = createContext();
+// STEP 1
+const AuthContext = createContext();
+
 export const useAuth = () => useContext(AuthContext);
 
+// Action types
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
 
 const authReducer = (prevState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+      console.log("LOGIN_SUCCESS action:", action);
       return {
         ...prevState,
         jwtToken: action.payload.jwtToken,
         user: action.payload.user,
         isAuthenticated: true,
       };
-
     case LOGOUT:
       return {
         ...prevState,
@@ -24,13 +26,13 @@ const authReducer = (prevState, action) => {
         user: null,
         isAuthenticated: false,
       };
-
     default:
       return prevState;
   }
 };
-export function AuthProvider({ children }) {
-  const initialAuthState = () => {
+
+export const AuthProvider = ({ children }) => {
+  const initialAuthState = (() => {
     try {
       const jwtToken = localStorage.getItem("jwtToken");
       const user = localStorage.getItem("user");
@@ -42,33 +44,38 @@ export function AuthProvider({ children }) {
         };
       }
     } catch (error) {
-      console.error("Failed to load from the localStorage", error);
+      console.error("Failed to load from localStorage:", error);
     }
-
     return {
       jwtToken: null,
       user: null,
       isAuthenticated: false,
     };
-  };
+  })();
 
   const [authState, dispatch] = useReducer(authReducer, initialAuthState);
 
+  // Save cart to localStorage whenever it changes
   useEffect(() => {
     try {
       if (authState.isAuthenticated) {
         localStorage.setItem("jwtToken", authState.jwtToken);
-        localStorage.setItem("user", JSON.parse(authState.user));
+        localStorage.setItem(
+          "user",
+          authState.user ? JSON.stringify(authState.user) : ""
+        );
       } else {
-        localStorage.removeItem("user");
         localStorage.removeItem("jwtToken");
+        localStorage.removeItem("user");
       }
     } catch (error) {
-      console.error("Failed to save to localStorage", error);
+      console.error("Failed to save to localStorage:", error);
     }
   }, [authState]);
 
+  // Action creators
   const loginSuccess = (jwtToken, user) => {
+    console.log("loginSuccess called with:", { jwtToken, user });
     dispatch({ type: LOGIN_SUCCESS, payload: { jwtToken, user } });
   };
 
@@ -76,15 +83,17 @@ export function AuthProvider({ children }) {
     dispatch({ type: LOGOUT });
   };
 
-  <AuthContext.Provider
-    value={{
-      loginSuccess,
-      logout,
-      jwtToken: authState.jwtToken,
-      user: authState.user,
-      isAuthenticated: authState.isAuthenticated,
-    }}
-  >
-    {children}
-  </AuthContext.Provider>;
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        jwtToken: authState.jwtToken,
+        user: authState.user,
+        isAuthenticated: authState.isAuthenticated,
+        loginSuccess,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
