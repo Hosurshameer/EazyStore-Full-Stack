@@ -10,7 +10,6 @@ export default function ProtectedRoute() {
   const location = useLocation();
   useEffect(() => {
     if (!isAuthenticated && location.pathname !== "/login") {
-      alert("You must be logged in to access the checkout page.");
       sessionStorage.setItem("redirectPath", location.pathname);
     }
   }, [isAuthenticated, location.pathname]);
