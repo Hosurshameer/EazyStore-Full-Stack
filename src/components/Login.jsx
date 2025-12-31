@@ -16,10 +16,13 @@ export default function Login() {
 
   const navigate = useNavigate();
 
+  const from = sessionStorage.getItem("redirectPath") || "/home";
+
   useEffect(() => {
     if (actionData?.success) {
       loginSuccess(actionData.jwtToken, actionData.user);
-      navigate("/home");
+      sessionStorage.removeItem("redirectPath");
+      navigate(from);
     } else if (actionData?.errors) {
       toast.error(actionData.errors.message || "Login Failed");
     }
