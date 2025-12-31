@@ -24,6 +24,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./store/auth-context.jsx";
 import Checkout from "./components/checkout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Orders from "./components/Orders.jsx";
+import Profile from "./components/Profile.jsx";
+import AdminOrders from "./components/admin/AdminOrders.jsx";
+import Messages from "./components/admin/Messages.jsx";
 
 const routeDefinations = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
@@ -37,6 +41,10 @@ const routeDefinations = createRoutesFromElements(
     <Route path="/products/:productId" element={<ProductDetail />} />
     <Route element={<ProtectedRoute />}>
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/admin/orders" element={<AdminOrders />} />
+      <Route path="/admin/messages" element={<Messages />} />
     </Route>
   </Route>
 );
