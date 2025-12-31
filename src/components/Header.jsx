@@ -10,6 +10,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useCart } from "../store/cart-context";
 import { useAuth } from "../store/auth-context";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -17,6 +19,7 @@ export default function Header() {
 
   const location = useLocation();
   const userMenuRef = useRef();
+  const navigate = useNavigate();
 
   const isAdmin = true; // This should come from auth context or user role
 
@@ -27,7 +30,7 @@ export default function Header() {
     setUserMenuOpen((prev) => !prev);
   };
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   });
@@ -59,6 +62,13 @@ export default function Header() {
       localStorage.setItem("theme", newTheme);
       return newTheme;
     });
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout();
+    toast.success("Logged out successfully");
+    navigate("/home");
   };
   const navLink =
     "text-center text-lg font-primary font-semibold text-primary py-2  dark:text-primary hover:text-dark dark:hover:text-[#0080a3] transition-colors";
@@ -175,7 +185,11 @@ export default function Header() {
                         )}
 
                         <li>
-                          <Link to="/home" className={dropdownLinkClass}>
+                          <Link
+                            onClick={handleLogout}
+                            to="/home"
+                            className={dropdownLinkClass}
+                          >
                             Logout
                           </Link>
                         </li>
