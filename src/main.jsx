@@ -28,6 +28,8 @@ import Orders from "./components/Orders.jsx";
 import Profile from "./components/Profile.jsx";
 import AdminOrders from "./components/admin/AdminOrders.jsx";
 import Messages from "./components/admin/Messages.jsx";
+import Register from "./components/Register.jsx";
+import { registerAction } from "./components/Register.jsx";
 
 const routeDefinations = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
@@ -37,6 +39,7 @@ const routeDefinations = createRoutesFromElements(
     <Route path="/contact" element={<Contact />} action={contactAction} />
     <Route path="/login" element={<Login />} action={loginAction} />
     <Route path="/cart" element={<Cart />} />
+    <Route path="/register" element={<Register />} action={registerAction} />
 
     <Route path="/products/:productId" element={<ProductDetail />} />
     <Route element={<ProtectedRoute />}>
