@@ -27,6 +27,7 @@ export async function productsLoader() {
     const response = await apiClient.get("/products");
     return response.data;
   } catch (error) {
+    concole.error("Error fetching products:", error);
     throw new Response(
       error.response?.data?.errorMessage ||
         error.message ||
