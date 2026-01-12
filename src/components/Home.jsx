@@ -35,6 +35,5 @@ export async function productsLoader() {
         status: error.status || 500,
       }
     );
-    console.error("Error fetching products:", error);
   }
 }
