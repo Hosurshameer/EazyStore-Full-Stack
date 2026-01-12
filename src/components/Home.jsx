@@ -27,7 +27,8 @@ export async function productsLoader() {
     const response = await apiClient.get("/products");
     return response.data;
   } catch (error) {
-   console.log("sameer sandy")
+    console.error("Error fetching products:", error);
+
     throw new Response(
       error.response?.data?.errorMessage ||
         error.message ||
