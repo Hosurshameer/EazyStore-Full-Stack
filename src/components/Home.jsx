@@ -29,6 +29,7 @@ export async function productsLoader() {
   } catch (error) {
     throw new Response(
       error.response?.data?.errorMessage ||
+      
         error.message ||
         "Failed to fetch the products  .Pleasse try again",
       {
