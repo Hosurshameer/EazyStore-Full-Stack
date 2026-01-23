@@ -26,11 +26,12 @@ export default function Header() {
   const toggleAdminMenu = () => {
     setAdminMenuOpen((prev) => !prev);
   };
+
   const toggleUserMenu = () => {
     setUserMenuOpen((prev) => !prev);
   };
 
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   });
@@ -132,7 +133,9 @@ export default function Header() {
                     onClick={toggleUserMenu}
                     className="relative text-primary"
                   >
-                    <span className={navLink}>Hello John Doe</span>
+                    <span className={navLink}>
+                      {`Hello ${user.name.length > 5 ? `${user.name.slice(0, 6)}...` : user.name}`}
+                    </span>
                     <FontAwesomeIcon
                       icon={faAngleDown}
                       className="text-primary dark:text-light w-6 h-6"
