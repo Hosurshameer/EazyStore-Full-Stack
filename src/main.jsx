@@ -48,7 +48,7 @@ const routeDefinations = createRoutesFromElements(
     <Route element={<ProtectedRoute />}>
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/orders" element={<Orders />} />
-      <Route path="/profile" element={<Profile /> } action={profileAction}  loader={profileLoader}/>
+      <Route path="/profile" element={<Profile /> } action={profileAction}  loader={profileLoader}  shouldRevalidate={({actionResult})=>{return !actionResult?.success;}}/>
       <Route path="/admin/orders" element={<AdminOrders />} />
       <Route path="/admin/messages" element={<Messages />} />
     </Route>
