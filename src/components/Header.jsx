@@ -20,8 +20,9 @@ export default function Header() {
   const location = useLocation();
   const userMenuRef = useRef();
   const navigate = useNavigate();
+ 
 
-  const isAdmin = true; // This should come from auth context or user role
+   // This should come from auth context or user role
 
   const toggleAdminMenu = () => {
     setAdminMenuOpen((prev) => !prev);
@@ -32,6 +33,7 @@ export default function Header() {
   };
 
   const { isAuthenticated, user, logout } = useAuth();
+    const isAdmin =user?.roles?.includes("ROLE_ADMIN");
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   });
