@@ -32,6 +32,11 @@ import Register from "./components/Register.jsx";
 import { registerAction } from "./components/Register.jsx";
 import { profileLoader } from "./components/Profile.jsx";
 import { profileAction } from "./components/Profile.jsx";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+
+const stripePromise=loadStripe("pk_test_51SwbPv2OhKYF21eMjvcsEM6g1ivgO5JKi1SEcumFH9Hm4c5VGa9hBr1S2nEvnqqEVb8wUHZrzQVLYkluBhLbheq200uG3hHJVL");
 
 
 const routeDefinations = createRoutesFromElements(
@@ -59,6 +64,7 @@ const appRouter = createBrowserRouter(routeDefinations);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <Elements stripe={stripePromise}>
     <AuthProvider>
       <CartProvider>
         <RouterProvider router={appRouter} />
@@ -78,5 +84,6 @@ createRoot(document.getElementById("root")).render(
       theme={localStorage.getItem("theme") === "drak" ? "dark" : "light"}
       transition={Bounce}
     />
+    </Elements>
   </StrictMode>
 );
