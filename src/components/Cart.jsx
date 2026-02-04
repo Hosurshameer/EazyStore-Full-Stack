@@ -6,9 +6,24 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../store/cart-context";
 import { useMemo } from "react";
 import CartTable from "./CartTable";
+import { useAuth } from "../store/auth-context";
 
 export default function Cart() {
   const { cart } = useCart();
+  const {isAuthenticated,user}=useAuth();
+
+
+
+const isAddressIncomplete=useMemo(()=>{
+  if(!isAuthenticated) return false;
+
+  if(!user.address) return true;
+
+  const{street,city,state,postalCode,country}=user.address;
+  return !street || !city || !state || !postalCode || !country;
+},[user]);
+
+
 
   const isEmpty = useMemo(() => cart.length === 0, [cart.length]);
 
@@ -20,8 +35,19 @@ export default function Cart() {
     <div className="min-h-[852px] py-12 bg-normalbg dark:bg-darkbg font-primary">
       <div className="max-w-4xl mx-auto px-4">
         <PageTltle title="Your Cart" />
+
+
+             
         {!isEmpty ? (
+
           <>
+
+            {isAddressIncomplete &&(
+                <p className="text-red-500 text-lg mt-2 text-center">Please update your address in your profile to proceed checkout</p>
+            )
+
+            }
+
             <CartTable />
             <div className="flex justify-between mt-8 space-x-4">
               {/* Back to Products Button */}
@@ -32,9 +58,19 @@ export default function Cart() {
                 Back to Products
               </Link>
               {/* Proceed to Checkout Button */}
-              <Link
-                to="/checkout"
-                className="py-2 px-4 bg-primary dark:bg-light text-white dark:text-black text-xl font-semibold rounded-sm flex justify-center items-center hover:bg-dark dark:hover:bg-lighter transition"
+               <Link
+                to={isAddressIncomplete ? "#" : "/checkout"}
+                className={`py-2 px-4 text-xl font-semibold rounded-sm flex justify-center items-center transition
+                                    ${
+                                      isAddressIncomplete
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-primary dark:bg-light hover:bg-dark dark:hover:bg-lighter"
+                                    } text-white dark:text-black`}
+                onClick={(e) => {
+                  if (isAddressIncomplete) {
+                    e.preventDefault();
+                  }
+                }}
               >
                 Proceed to Checkout
               </Link>
