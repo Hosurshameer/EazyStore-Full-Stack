@@ -18,7 +18,7 @@ export default function Profile() {
   const navigation = useNavigation();
   const navigate = useNavigate();
   const isSubmitting = navigation.state === "submitting";
-  const { logout } = useAuth();
+  const { logout ,loginSuccess} = useAuth();
 
   const [profileData, setProfileData] = useState(initialProfileData);
 
@@ -32,8 +32,22 @@ export default function Profile() {
         );
         navigate("/login");
       } else {
+
+
         toast.success("Your Profile details are saved successfully!");
         setProfileData(actionData.profileData);
+
+
+        if(actionData.profileData){
+         const updatedUser={
+          ...profileData,
+          ...actionData.profileData,
+         };
+
+         loginSuccess(localStorage.getItem("jwtToken"),updatedUser);
+        }
+
+
       }
     }
   }, [actionData]);
