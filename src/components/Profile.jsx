@@ -286,9 +286,9 @@ export default function Profile() {
               name="country"
               type="text"
               required
-              minLength={3}
-              maxLength={30}
-              placeholder="Your Country"
+              minLength={2}
+              maxLength={2}
+              placeholder="Ex.IN || Ex.US"
               value={profileData.address?.country}
               onChange={(e) =>
                 setProfileData((prev) => ({
