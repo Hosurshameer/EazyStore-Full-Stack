@@ -153,7 +153,7 @@ export default function Profile() {
             name="street"
             type="text"
             placeholder="Street details"
-            value={profileData.address.street}
+            value={profileData.address?.street}
             onChange={(e) =>
               setProfileData((prev) => ({
                 ...prev,
@@ -188,7 +188,7 @@ export default function Profile() {
               name="city"
               type="text"
               placeholder="Your City"
-              value={profileData.address.city}
+              value={profileData.address?.city}
               onChange={(e) =>
                 setProfileData((prev) => ({
                   ...prev,
@@ -223,7 +223,7 @@ export default function Profile() {
               minLength={2}
               maxLength={30}
               placeholder="Your State"
-              value={profileData.address.state}
+              value={profileData.address?.state}
               onChange={(e) =>
                 setProfileData((prev) => ({
                   ...prev,
@@ -254,7 +254,7 @@ export default function Profile() {
               name="postalCode"
               type="text"
               placeholder="Your Postal Code"
-              value={profileData.address.postalCode}
+              value={profileData.address?.postalCode}
               onChange={(e) =>
                 setProfileData((prev) => ({
                   ...prev,
@@ -289,7 +289,7 @@ export default function Profile() {
               minLength={3}
               maxLength={30}
               placeholder="Your Country"
-              value={profileData.address.country}
+              value={profileData.address?.country}
               onChange={(e) =>
                 setProfileData((prev) => ({
                   ...prev,
