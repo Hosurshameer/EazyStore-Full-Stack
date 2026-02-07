@@ -109,11 +109,14 @@ export default function CheckoutForm() {
       );
 
       if (error) {
+        console.log(error);
         setErrorMessage(error.message || "Payment failed. Please try again.");
       } else if (paymentIntent && paymentIntent.status === "succeeded") {
         toast.success("Payment successful!");
        
          navigate("/order-success");
+
+        //  ...
         // try {
         //   await apiClient.post("/orders", {
         //     totalPrice: totalPrice,
@@ -122,6 +125,8 @@ export default function CheckoutForm() {
         //     items: cart.map((item) => ({
         //       productId: item.productId,
         //       quantity: item.quantity,
+
+
         //       price: item.price,
         //     })),
         //   });
