@@ -109,7 +109,7 @@ export default function CheckoutForm() {
       );
 
       if (error) {
-        console.log(error);
+       
         setErrorMessage(error.message || "Payment failed. Please try again.");
       } else if (paymentIntent && paymentIntent.status === "succeeded") {
         toast.success("Payment successful!");
