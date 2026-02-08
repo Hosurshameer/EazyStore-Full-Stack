@@ -113,21 +113,18 @@ export default function CheckoutForm() {
         setErrorMessage(error.message || "Payment failed. Please try again.");
       } else if (paymentIntent && paymentIntent.status === "succeeded") {
         toast.success("Payment successful!");
-       
-         
-
-        
+      
         try {
           await apiClient.post("/orders", {
             totalPrice: totalPrice,
             paymentId: paymentIntent.id,
             paymentStatus: paymentIntent.status,
-            items: cart.map((item) => ({
-              productId: item.productId,
-              quantity: item.quantity,
+            orderItems: cart.map((orderItems) => ({
+              productId: orderItems.productId,
+              quantity: orderItems.quantity,
 
 
-              price: item.price,
+              price: orderItems.price,
             })),
           });
           sessionStorage.setItem("skipRedirectPath", "true");
