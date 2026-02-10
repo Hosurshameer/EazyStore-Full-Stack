@@ -19,7 +19,7 @@ apiClient.interceptors.request.use(
     if(jwtToken){
       config.headers.Authorization=`Bearer ${jwtToken}`;
      
-      console.log("sameer sandy");
+     
       
     }
 
