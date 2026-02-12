@@ -16,7 +16,7 @@ export default function Orders() {
   }
   return (
     <div className="min-h-[852px] container mx-auto px-6 py-12 font-primary dark:bg-darkbg">
-      {Object.keys(orders).length === 0 ? (
+      {orders.length === 0 ? (
         <p className="text-center text-2xl  text-primary dark:text-lighter">
           No orders found.
         </p>
