@@ -35,6 +35,7 @@ import { profileLoader } from "./components/Profile.jsx";
 import { profileAction } from "./components/Profile.jsx";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { ordersLoader } from "./components/Orders.jsx";
 
 
 const stripePromise=loadStripe("pk_test_51SwbPv2OhKYF21eMjvcsEM6g1ivgO5JKi1SEcumFH9Hm4c5VGa9hBr1S2nEvnqqEVb8wUHZrzQVLYkluBhLbheq200uG3hHJVL");
@@ -55,7 +56,7 @@ const routeDefinations = createRoutesFromElements(
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/order-success" element={<OrderSuccess />} />
 
-      <Route path="/orders" element={<Orders />} />
+      <Route path="/orders" element={<Orders />} loader={ordersLoader} />
       <Route path="/profile" element={<Profile /> } action={profileAction}  loader={profileLoader}  shouldRevalidate={({actionResult})=>{return !actionResult?.success;}}/>
       <Route path="/admin/orders" element={<AdminOrders />} />
       <Route path="/admin/messages" element={<Messages />} />
