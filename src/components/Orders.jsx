@@ -86,6 +86,7 @@ export async function ordersLoader() {
     return response.data;
   } catch (error) {
     throw new Response(
+      cosole.log("Error raised"),
       error.response?.data?.errorMessage ||
         error.message ||
         "Failed to fetch orders. Please try again.",
