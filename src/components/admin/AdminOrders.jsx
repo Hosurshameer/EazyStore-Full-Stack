@@ -23,7 +23,7 @@ export default function AdminOrders() {
   const handleConfirm = async (orderId) => {
     try {
       await apiClient.patch(`/admin/orders/${orderId}/confirm`);
-      toast.success(`Order confirmed`);
+      toast.success(`Order ${orderId} confirmed`);
       revalidator.revalidate(); // 🔁 Re-run loader
     } catch (error) {
       toast.error("Failed to confirm order.");
