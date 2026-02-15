@@ -36,7 +36,7 @@ export default function AdminOrders() {
   const handleCancel = async (orderId) => {
     try {
       await apiClient.patch(`/admin/orders/${orderId}/cancel`);
-      console.log("Ntg");
+      
       toast.success(`Order ${orderId} cancelled`);
       revalidator.revalidate(); // 🔁 Re-run loader
     } catch (error) {
