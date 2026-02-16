@@ -2,6 +2,7 @@ import React from "react";
 import apiClient from "../../api/apiClient";
 import { useLoaderData, useRevalidator } from "react-router-dom";
 import { toast } from "react-toastify";
+import PageTltle from "../PageTltle";
 
 
 export default function Messages(){
@@ -26,7 +27,7 @@ return (
         </p>
       ) : (
         <div className="overflow-x-auto">
-          <PageTitle title="Admin Contact Messages" />
+          <PageTltle title="Admin Contact Messages" />
           <table className="w-full mt-4 table-fixed border-collapse border border-gray-200 dark:border-gray-700">
             <thead>
               <tr className="bg-primary dark:bg-light text-lighter dark:text-primary">
