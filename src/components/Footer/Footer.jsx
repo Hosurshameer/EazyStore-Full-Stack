@@ -12,7 +12,7 @@ export default function Footer() {
       />
       by
       <a
-        href="https://eazybytes.com/"
+        href="https://github.com/Hosurshameer"
         target="_blank"
         rel="noreferrer"
         className="text-primary dark:text-primary font-semibold px-1 transition-colors duration-300 hover:text-dark dark:hover:text-[#0080a3]"
