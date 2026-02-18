@@ -8,7 +8,12 @@ export default function AdminOrderAfterClick() {
   return (
     <div>
         
-         <img src={item.imageUrl} alt={item.name}/>
+         <img src={item.imageUrl}
+         
+         alt={item.name}
+         className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
+
+         />
        
     </div>
   )
