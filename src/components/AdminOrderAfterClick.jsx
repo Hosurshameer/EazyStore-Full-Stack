@@ -7,7 +7,9 @@ export default function AdminOrderAfterClick() {
     const location=useLocation();
     const item=location.state;
   return (
-    <div className="w-64 mx-auto mt-40 bg-blue-200">
+    <>
+    <PageTltle title="Your sticker will look like this "/>
+    <div className="w-64 mx-auto mt-20 bg-blue-200">
 
        
         
@@ -19,5 +21,6 @@ export default function AdminOrderAfterClick() {
          />
        
     </div>
+    </>
   )
 }
