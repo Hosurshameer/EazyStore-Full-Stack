@@ -25,11 +25,11 @@ export default function Header() {
    // This should come from auth context or user role
 
   const toggleAdminMenu = () => {
-    setAdminMenuOpen(isAdminMenuOpen?false:true);
+    setAdminMenuOpen((prev)=>!prev);
   };
 
   const toggleUserMenu = () => {
-    setUserMenuOpen(isAdminMenuOpen?false:true);
+    setUserMenuOpen((prev)=>!prev);
   };
 
   const { isAuthenticated, user, logout } = useAuth();
