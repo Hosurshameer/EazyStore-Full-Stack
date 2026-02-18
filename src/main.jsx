@@ -38,6 +38,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { ordersLoader } from "./components/Orders.jsx";
 import { adminOrdersLoader } from "./components/admin/AdminOrders.jsx";
 import { messagesLoader } from "./components/admin/Messages.jsx";
+import AdminOrderAfterClick from "./components/AdminOrderAfterClick.jsx";
 
 
 const stripePromise=loadStripe("pk_test_51SwbPv2OhKYF21eMjvcsEM6g1ivgO5JKi1SEcumFH9Hm4c5VGa9hBr1S2nEvnqqEVb8wUHZrzQVLYkluBhLbheq200uG3hHJVL");
@@ -54,6 +55,10 @@ const routeDefinations = createRoutesFromElements(
     <Route path="/register" element={<Register />} action={registerAction} />
 
     <Route path="/products/:productId" element={<ProductDetail />} />
+    <Route path="/item/:productId" element={<AdminOrderAfterClick />} />
+
+
+
     <Route element={<ProtectedRoute />}>
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/order-success" element={<OrderSuccess />} />

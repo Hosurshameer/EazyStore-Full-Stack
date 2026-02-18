@@ -31,6 +31,7 @@ const isAddressIncomplete=useMemo(()=>{
   function handleClick() {
     navigation("/home", { state: { username: "sameer" } });
   }
+  
   return (
     <div className="min-h-[852px] py-12 bg-normalbg dark:bg-darkbg font-primary">
       <div className="max-w-4xl mx-auto px-4">

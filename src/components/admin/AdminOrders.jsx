@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData, useRevalidator } from "react-router-dom";
+import { Link, useLoaderData, useRevalidator } from "react-router-dom";
 import PageTltle from "../PageTltle";
 import apiClient from "../../api/apiClient";
 import { toast } from "react-toastify";
@@ -108,11 +108,17 @@ export default function AdminOrders() {
                     key={index}
                     className="flex items-center border-b pb-4 last:border-b-0"
                   >
+                    <Link
+                    to={`/item/${item.productId}`}
+                    state={item}
+                    >
                     <img
                       src={item.imageUrl}
                       alt={item.productName}
                       className="w-16 h-16 object-cover rounded-md mr-4"
                     />
+                    </Link>
+                    
                     <div>
                       <h3 className="text-md font-medium text-gray-800 dark:text-gray-200">
                         {item.productName}
