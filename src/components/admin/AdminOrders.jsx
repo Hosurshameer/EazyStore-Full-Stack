@@ -27,6 +27,7 @@ export default function AdminOrders() {
       revalidator.revalidate(); // 🔁 Re-run loader
     } catch (error) {
       toast.error("Failed to confirm order.");
+      console.log("sameer");
     }
   };
 
