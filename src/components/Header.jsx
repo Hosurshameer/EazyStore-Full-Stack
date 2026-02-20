@@ -83,7 +83,7 @@ export default function Header() {
       <div className="flex items-center justify-between mx-auto max-w-[1152px] px-6 py-4">
         <Link to="/" className={navLink}>
           <FontAwesomeIcon icon={faTags} className="h-8 w-8" />
-          <span className="font-bold">Eazy Stickers</span>
+          <span className="font-bold">Crazy Stickers</span>
         </Link>
 
         <nav className="flex items-center py-2 z-10">
