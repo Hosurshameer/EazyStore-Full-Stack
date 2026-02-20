@@ -13,7 +13,7 @@ export default function Home() {
   // console.log(path);
   return (
     <div className="home-container bg-normalbg dark:bg-black min-h-screen">
-      <PageHeading title="Explore Eazy Stickers">
+      <PageHeading title="Explore Crazy Stickers">
         Add a touch of creativity to your space with our wide range of fun and
         unique stickers.Perfect for any occasion!
       </PageHeading>
