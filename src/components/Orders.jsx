@@ -55,7 +55,7 @@ export default function Orders() {
               <div className="mt-4 space-y-4">
                 {order.items.map((item, index) => (
                   <div key={index} className="flex items-center border-b pb-4">
-                    <Link to="/item/:productId" state={item}>
+                    <Link to={`/user/item/${item.productId}`} state={item}>
                     <img
                       src={item.imageUrl}
                       alt={item.productName}
