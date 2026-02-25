@@ -75,6 +75,7 @@ export const CartProvider = ({ children }) => {
       localStorage.setItem("cart", JSON.stringify(cart));
     } catch (error) {
       console.error("Failed to save the cart to localStorage", error);
+      console.log(":sameerSandy");
     }
   }, [cart]);
 
