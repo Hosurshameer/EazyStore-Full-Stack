@@ -13,7 +13,7 @@ function App() {
   const [startupLeaving, setStartupLeaving] = useState(false);
 
   useEffect(() => {
-    const visibleMs = 2000;
+    const visibleMs = 5000;
     const fadeMs = 700;
 
     const t1 = setTimeout(() => setStartupLeaving(true), visibleMs);

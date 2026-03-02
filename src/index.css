@@ -25,3 +25,61 @@ body {
 .dark {
   color-scheme: dark;
 }
+
+@keyframes entry-bg-reveal {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    transform: scale(1.06);
+    opacity: 0.001;
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes entry-logo-bounce2 {
+  0% {
+    transform: translateY(18px) scale(0.94);
+    opacity: 0.001;
+  }
+  18% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  38% {
+    transform: translateY(-18px) scale(1.02);
+  }
+  55% {
+    transform: translateY(0) scale(1);
+  }
+  72% {
+    transform: translateY(-10px) scale(1.01);
+  }
+  86% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.entry-bg-reveal {
+  animation: entry-bg-reveal 900ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  will-change: clip-path, transform, opacity;
+}
+
+.entry-logo-bounce2 {
+  animation: entry-logo-bounce2 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  animation-delay: 650ms;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-bg-reveal,
+  .entry-logo-bounce2 {
+    animation: none !important;
+  }
+}
